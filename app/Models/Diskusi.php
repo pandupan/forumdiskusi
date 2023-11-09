@@ -14,4 +14,6 @@ class Diskusi extends Model
     {
         return $this->belongsTo(User::class);
     }
+    protected $fillable = ['user_id', 'content', 'kategori', 'photo_path'];
+    
 }

@@ -15,13 +15,30 @@ class DiskusiStoreController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(): RedirectResponse
+    public function __invoke(Request $request): RedirectResponse
     {
-        Diskusi::create([
-            'user_id' => Auth::id(),
-            'content' => request('content')
-        ]);
+              // Validasi form
+    $request->validate([
+        'content' => 'required|string',
+        'kategori' => 'nullable|string',
+        'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,mp4,avi,mov,doc,docx,pdf|max:102400', // Menambahkan tipe file yang diizinkan
+    ]);
 
-        return redirect()->back();        
+    // Simpan foto ke server jika ada
+    if ($request->hasFile('file')) {
+        $filePath = $request->file('file')->store('diskusi_files', 'public');
     }
+
+    // Simpan data ke database
+    Diskusi::create([
+        'user_id' => Auth::id(),
+        'content' => $request->input('content'),
+        'kategori' => $request->input('kategori'),
+        'file' => isset($filePath) ? $filePath : null,
+    ]);
+
+    return redirect()->back();              
+    }
+
+  
 }

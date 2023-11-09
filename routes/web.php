@@ -4,6 +4,7 @@ use App\Http\Controllers\Diskusi\DiskusiDeleteController;
 use App\Http\Controllers\Diskusi\DiskusiStoreController;
 use App\Http\Controllers\Diskusi\DiskusiEditController;
 use App\Http\Controllers\Diskusi\DiskusiUpdateController;
+use App\Http\Controllers\Diskusi\DiskusiFilterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,9 @@ Route::get('diskusi/{id}/edit', DiskusiEditController::class)->name('diskusi.edi
 Route::put('diskusi/{id}/edit', DiskusiUpdateController::class)->name('diskusi.update');
 //Diskusi Delete
 Route::delete('diskusi/{id}', DiskusiDeleteController::class)->name('diskusi.destroy');
+//Diskusi Filter
+Route::get('diskusi/filter', DiskusiFilterController::class)->name('diskusi.filter');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
