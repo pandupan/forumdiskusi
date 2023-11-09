@@ -17,7 +17,7 @@
                         <select name="kategori" class="form-select" style="margin-right: 10px;">
                             <option value="kategori1">Kategori 1</option>
                             <option value="kategori2">Kategori 2</option>
-                            <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
+                            <!-- Tambah kategori-->
                         </select>
                         <input type="file" name="file">
                     </form> 
@@ -26,7 +26,7 @@
                             <option value="">Semua Kategori</option>
                             <option value="kategori1">Kategori 1</option>
                             <option value="kategori2">Kategori 2</option>
-                            <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
+                            <!-- Tambah filter kategori-->
                         </select>
                         <input type="submit" value="Terapkan Filter!" class="btn btn-primary"  style="margin-right: 10px;">
                         <input type="submit" value="Filter">
