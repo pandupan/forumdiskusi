@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrainer();
             $table->string('content');
             $table->string('kategori')->nullable();
-            $table->string('foto')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@
                             <option value="kategori2">Kategori 2</option>
                             <!-- Tambahkan lebih banyak kategori sesuai kebutuhan -->
                         </select>
-                        <input type="file" name="foto">
+                        <input type="file" name="file">
                     </form> 
                     <form action="{{ route('diskusi.filter') }}" method="get">
                         <select name="kategori">
@@ -41,12 +41,21 @@
                     <h2 class="text-xl font-bold">{{ $diskus->user->name}}</h2>
                     <p> {{ $diskus->content }} </p>
                     <div style="max-height: 480px; overflow: hidden;">
-                        @if($diskus->foto)
-                            <img src="{{ asset('storage/'. $diskus->foto) }}" alt="diskusi photos" style="max-width: 50%; height: auto; border-radius: 10px;">
+                        @if($diskus->file)
+                        @if(in_array(pathinfo($diskus->file, PATHINFO_EXTENSION), ['jpeg', 'png', 'jpg', 'gif']))
+                            <img src="{{ asset('storage/'. $diskus->file) }}" alt="Diskusi File" style="max-width: 50%; height: auto; border-radius: 10px;">
+                        @elseif(in_array(pathinfo($diskus->file, PATHINFO_EXTENSION), ['mp4', 'avi', 'mov']))
+                            <video controls width="560">
+                                <source src="{{ asset('storage/'. $diskus->file) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         @else
-                            <p></p>
+                            <a href="{{ asset('storage/'. $diskus->file) }}" target="_blank">Download File</a>
                         @endif
-                        <p>Kategori: {{ $diskus->kategori ?? 'Tidak ada kategori' }}</p>
+                    @else
+                        <p></p>
+                    @endif
+                        <p>Kategori: {{ $diskus->kategori ?? 'Tidak ada kategori' }} </p>
                         
                 </div>
                     <div class="text-end">

@@ -21,12 +21,12 @@ class DiskusiStoreController extends Controller
     $request->validate([
         'content' => 'required|string',
         'kategori' => 'nullable|string',
-        'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,mp4,avi,mov,doc,docx,pdf|max:102400', // Menambahkan tipe file yang diizinkan
     ]);
 
     // Simpan foto ke server jika ada
-    if ($request->hasFile('foto')) {
-        $photoPath = $request->file('foto')->store('diskusi_photos', 'public');
+    if ($request->hasFile('file')) {
+        $filePath = $request->file('file')->store('diskusi_files', 'public');
     }
 
     // Simpan data ke database
@@ -34,7 +34,7 @@ class DiskusiStoreController extends Controller
         'user_id' => Auth::id(),
         'content' => $request->input('content'),
         'kategori' => $request->input('kategori'),
-        'foto' => isset($photoPath) ? $photoPath : null,
+        'file' => isset($filePath) ? $filePath : null,
     ]);
 
     return redirect()->back();              
