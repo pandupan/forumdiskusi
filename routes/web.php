@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\Diskusi\DiskusiDeleteController;
 use App\Http\Controllers\Diskusi\DiskusiStoreController;
 use App\Http\Controllers\Diskusi\DiskusiEditController;
 use App\Http\Controllers\Diskusi\DiskusiUpdateController;
 use App\Http\Controllers\Diskusi\DiskusiFilterController;
+use App\Http\Controllers\Diskusi\DiskusiCommentsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +33,11 @@ Route::post('diskusi', DiskusiStoreController::class)->name('diskusi.store');
 Route::get('diskusi/{id}/edit', DiskusiEditController::class)->name('diskusi.edit');
 //Diskusi UPDATE
 Route::put('diskusi/{id}/edit', DiskusiUpdateController::class)->name('diskusi.update');
+//Diskusi COMMENTS
+Route::get('diskusi/{id}/comment', DiskusiCommentsController::class)->name('diskusi.show');
+Route::post('diskusi/{id}/comment/commenting', [CommentsController::class, 'store'])
+    ->middleware('auth', 'verified')
+    ->name('comment.store');
 //Diskusi Delete
 Route::delete('diskusi/{id}', DiskusiDeleteController::class)->name('diskusi.destroy');
 //Diskusi Filter
@@ -43,4 +50,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

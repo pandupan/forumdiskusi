@@ -15,5 +15,9 @@ class Diskusi extends Model
         return $this->belongsTo(User::class);
     }
     protected $fillable = ['user_id', 'content', 'kategori', 'photo_path'];
-    
+
+    public function Comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

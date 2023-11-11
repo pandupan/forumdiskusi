@@ -56,8 +56,8 @@
                         <p></p>
                     @endif
                         <p>Kategori: {{ $diskus->kategori ?? 'Tidak ada kategori' }} </p>
-                        
-                </div>
+                    </div>
+
                     <div class="text-end">
                         @can('update', $diskus)
                             <a href="{{ route('diskusi.edit', $diskus->id) }}" 
@@ -71,7 +71,13 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-error btn-sm">Hapus</button>
                         </form>
-                        
+                        @endcan
+                        @can('view', $diskus)
+                            <a 
+                                href="{{ route('diskusi.show', $diskus->id) }}" 
+                              class="link link-hover text-blue-400 text-xs">
+                                Komentar
+                            </a>
                         @endcan
                         <span class="text-xs">
                             {{ $diskus->created_at->diffForHumans() }}
