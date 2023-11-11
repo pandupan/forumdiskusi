@@ -1,4 +1,7 @@
-<x-guest-layout>
+<x-guest-layout class="bg-gradient-to-r from-indigo-800 to-purple-500 via-blue-100">
+    <div class="flex items-center justify-center mb-4">
+        <img src="{{ asset('logohmif.jpg') }}" alt="Logo" class="w-16 h-16">
+    </div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

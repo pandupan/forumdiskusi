@@ -1,19 +1,19 @@
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="header" style="color: #094067;">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
     <!-- Memulai Topik yang akan didiskusikan -->
-    <div class="py-12">
+    <div class="py-12" style="background-color: #eff0f3;">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="card bg-white">
                 <div class="card-body">                
                     <form action="{{ route('diskusi.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <textarea name="content" class="textarea textarea-bordered w-full bg-white" placeholder="apa yang ingin kamu diskusikan? " rows="3"></textarea>
-                        <input type="submit" value="Kirim!" class="btn btn-primary"  style="margin-right: 10px;">
+                        <input type="submit" value="Kirim!" class="btn btn-primary bg-blue-500 hover:bg-blue-700"  style="margin-right: 10px;">
                         <select name="kategori" class="form-select" style="margin-right: 10px;">
                             <option value="kategori1">Kategori 1</option>
                             <option value="kategori2">Kategori 2</option>
@@ -21,7 +21,8 @@
                         </select>
                         <input type="file" name="file">
                     </form> 
-                    <form action="{{ route('diskusi.filter') }}" method="get">
+                    <form action="{{ route('diskusi.filter') }}" method="get" class="flex justify-end items-end space-x-4">
+                        <input type="submit" value="Filter">
                         <select name="kategori">
                             <option value="">Semua Kategori</option>
                             <option value="kategori1">Kategori 1</option>
@@ -29,9 +30,7 @@
                             <!-- Tambah filter kategori-->
                         </select>
                         <input type="submit" value="Terapkan Filter!" class="btn btn-primary"  style="margin-right: 10px;">
-                        <input type="submit" value="Filter">
                     </form>
-                       
                 </div>
             </div>
 
@@ -75,8 +74,8 @@
                         @can('view', $diskus)
                             <a 
                                 href="{{ route('diskusi.show', $diskus->id) }}" 
-                              class="link link-hover text-blue-400 text-xs">
-                                Komentar
+                              class="flex justify-start items-start link link-hover text-blue-400 text-xs">
+                              <button class="btn btn-outline btn-primary btn-sm">Komentar</button>
                             </a>
                         @endcan
                         <span class="text-xs">
