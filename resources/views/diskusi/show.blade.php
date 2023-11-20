@@ -33,8 +33,7 @@
                     >
                         @csrf
                         <h2 class="text-xl font-bold">Komentar</h2>
-                        <textarea class="block textarea textarea-bordered bg-white" name="comment" row="3" placeholder="Tinggalkan komentar...">
-                        </textarea>
+                        <textarea class="block textarea textarea-bordered bg-white" name="comment" row="3" placeholder="Tinggalkan komentar..."></textarea>
                         <input class="btn btn-secondary" type="submit" value="Komentar">
                     </form>
                 </div>
@@ -46,14 +45,8 @@
                         <h2 class="text-xl font-bold">{{ $comment->user->name }}</h2>
                         <p> {{ $comment->comment }} </p>
                         <div class="text-end">
-                            @can('update', $comment)
-                                <a href="{{ route('diskusi.edit', $comment->id) }}" 
-                                    class="link link-hover text-blue-400 text-xs">
-                                    Edit
-                            </a>
-                            @endcan
                             @can('delete', $comment)
-                                <form action="{{ route('diskusi.destroy', $comment->id) }}" method="POST">
+                                <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-error btn-sm">Hapus</button>

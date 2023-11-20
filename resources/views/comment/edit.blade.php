@@ -9,10 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="card bg-white">
                 <div class="card-body">                
-                    <form action="{{ route('diskusi.update', $diskusi->id) }}" method="post">
+                    <form action="{{ route('comment.update', $comment->id) }}" method="post">
                         @csrf
                         @method(('put'))
-                        <textarea name="content" class="textarea textarea-bordered w-full bg-white" placeholder="apa yang ingin kamu diskusikan? " rows="3">{{ $diskusi->content }}</textarea>
+                        <textarea name="content" class="textarea textarea-bordered w-full bg-white" placeholder="apa yang ingin kamu diskusikan? " rows="3">{{ $comment->comment }}</textarea>
                         <input type="submit" value="Edit" class="btn btn-primary">
                     </form>    
                 </div>

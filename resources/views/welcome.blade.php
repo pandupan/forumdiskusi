@@ -42,10 +42,6 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
             .title {
                 font-size: 84px;
             }
@@ -58,10 +54,6 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
             }
 
             .hmif-image {
@@ -88,6 +80,34 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
+        .content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                width: 70%; 
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        .diskusi {
+            background-color: #3490dc;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            padding: 1.5rem 2rem 1.5rem 2rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .diskusi:hover {
+            background-color: #2779bd;
+        }
         </style>
     </head>
     <body>
@@ -96,7 +116,7 @@
             <nav>
                 @if (Route::has('login') && Auth::check())
                     <div class="top-right links">
-                        <a href="{{ url('/home') }}">Dashboard</a>
+                        <a href="{{ url('/timeline') }}">Dashboard</a>
                     </div>
                 @elseif (Route::has('login') && !Auth::check())
                     <div class="top-right links">
@@ -118,8 +138,13 @@
                         Forum Diskusi Informatika
                     </div>
 
-                <div class="links" style="color: #5f6c7b; text-align: center; width: 50%; margin: 0 auto;">
+                <div class="links">
                     <p class="">Temukan wawasan baru dan jalin hubungan dengan sesama Mahasiswa Informatika di sini. Ciptakan koneksi yang bermakna dengan para ahli bersama. Temukan solusi, jawaban, dan inspirasi dari rekan-rekan komunitas yang berpengalaman.</p>
+                </div>
+                <div class="diskusi">
+                    <a href="/timeline" style="text-decoration: none; color: white;">
+                        Mulai Diskusi
+                    </a>
                 </div>
             </div>
         </div>
