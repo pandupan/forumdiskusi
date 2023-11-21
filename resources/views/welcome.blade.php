@@ -93,19 +93,21 @@
     <body>
 
         <div class="flex-center position-ref full-height">
+            <nav>
+                @if (Route::has('login') && Auth::check())
+                    <div class="top-right links">
+                        <a href="{{ url('/home') }}">Dashboard</a>
+                    </div>
+                @elseif (Route::has('login') && !Auth::check())
+                    <div class="top-right links">
+                        <div class="auth-buttons">
+                            <a href="{{ url('/login') }}">Login</a>
+                            <a href="{{ url('/register') }}">Register</a>
+                        </div>
+                    </div>
+                @endif
+            </nav>
 
-            @if (Route::has('login') && Auth::check())
-                <div class="top-right links">
-                    <a href="{{ url('/home') }}">Dashboard</a>
-                </div>
-            @elseif (Route::has('login') && !Auth::check())
-            <div class="top-right links">
-                <div class="auth-buttons">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
-                </div>
-            </div>
-            @endif
             
             <div>
                 <img src="{{ asset('logohmif.jpg') }}" alt="HMIF Logo" class="hmif-image">
@@ -113,12 +115,11 @@
 
             <div class="content">
                     <div class="title m-b-md">
-                        Forum Diskusi
+                        Forum Diskusi Informatika
                     </div>
 
-                <div class="links" style="color: #5f6c7b">
-                    <a href="https://laravel.com/docs">Kategori 1</a>
-                    <a href="https://laracasts.com">Kategori 2</a>
+                <div class="links" style="color: #5f6c7b; text-align: center; width: 50%; margin: 0 auto;">
+                    <p class="">Temukan wawasan baru dan jalin hubungan dengan sesama Mahasiswa Informatika di sini. Ciptakan koneksi yang bermakna dengan para ahli bersama. Temukan solusi, jawaban, dan inspirasi dari rekan-rekan komunitas yang berpengalaman.</p>
                 </div>
             </div>
         </div>
