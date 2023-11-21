@@ -37,7 +37,7 @@
             @foreach ($diskusi as $diskus)
             <div class="card my-4 bg-white">
                 <div class="card-body">
-                    <h2 class="text-xl font-bold">{{ $diskus->user->name}}</h2>
+                    <h2 class="text-xl font-bold">{{ $diskus->user->name ?? 'Pengguna Telah Meninggalkan Diskusi'}}</h2>
                     <p> {{ $diskus->content }} </p>
                     <div style="max-height: 480px; overflow: hidden;">
                         @if($diskus->file)

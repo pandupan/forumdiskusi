@@ -15,7 +15,10 @@ class TimelineController extends Controller
     public function __invoke(): View
     {
         return view('timeline', [
-            'diskusi' => Diskusi::latest('id')->get(),
+            'diskusi' => Diskusi::latest('id')->get()->map(function ($item) {
+                $item->id = $item->id ?? 0; // Mengatasi nilai null dengan default 0 atau sesuai kebutuhan
+                return $item;
+            }),
         ]);
     }
 }

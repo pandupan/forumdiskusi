@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="card my-4 bg-white">
                 <div class="card-body">
-                    <h2 class="text-xl font-bold">{{ $diskusi->user->name }}</h2>
+                <h2 class="text-xl font-bold">{{ $diskusi->user ? $diskusi->user->name ?? 'Pengguna Telah Meninggalkan Diskusi' : 'Pengguna Telah Meninggalkan Diskusi' }}</h2>
                     <p> {{ $diskusi->content }} </p>
                     <div class="text-end">
                         @can('update', $diskusi)
